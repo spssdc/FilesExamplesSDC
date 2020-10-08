@@ -17,7 +17,7 @@ namespace FilesExamplesSDC
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             myFile = Path.Combine(docPath, myFile);
             StreamWriter fileStr = File.CreateText(myFile);
-
+            
             do
             {
                 Console.WriteLine("Enter next sentence: ");
