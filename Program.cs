@@ -10,13 +10,16 @@ namespace FilesExamplesSDC
             string nextLine;
             string myFile = "sentences.txt";
 
-            // Version 1
+            // Version 1 - write relative to folder the binary is in
             // StreamWriter fileStr = File.CreateText(myFile);
 
-            // Version 2 write to My Documents
+            // Version 2 - Path to My Documents folder
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             myFile = Path.Combine(docPath, myFile);
-            StreamWriter fileStr = File.CreateText(myFile);
+            //StreamWriter fileStr = File.CreateText(myFile);
+
+            // Version 3 - Appending
+            StreamWriter fileStr = File.AppendText(myFile);
             
             do
             {
