@@ -10,29 +10,34 @@ namespace FilesExamplesSDC
             string nextLine;
             string myFile = fNameParam;
 
-            // Version 2 - Path to My Documents folder
+            // Set docPath
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             myFile = Path.Combine(docPath, fNameParam);
-            StreamWriter fileStr = File.CreateText(myFile);
+ 
+            if (!File.Exists(myFile))  // File does not exist
+            {  // create file as it does not exist
+                StreamWriter fileStr = File.CreateText(myFile);
+            }
 
-            // Version 3 - Appending
-            // StreamWriter fileStr = File.AppendText(myFile);
-            
-            do
-            {
+            using(StreamWriter fileStr = File.AppendText(myFile))
+            { // append to the file
                 Console.WriteLine("Enter next sentence: ");
                 nextLine = Console.ReadLine();
                 if (nextLine != "")
                 {
                     fileStr.WriteLine(nextLine);
                 }
-            } while (nextLine != "");
-            fileStr.Close();
+            } while (nextLine != "") ;
+
+            using (StreamWriter fileStr = File.AppendText(myFile))
+            { // close the file
+                fileStr.Close();
+            }
         }
         static void Main()
         {
             Console.WriteLine("File manipulation");
-            WriteSentences("Sentences.txt);
+            WriteSentences("Sentences.txt");
         }
     }
 }
