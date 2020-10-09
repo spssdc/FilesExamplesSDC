@@ -5,21 +5,18 @@ namespace FilesExamplesSDC
 {
     class Program
     {
-        static void WriteSentences()
+        static void WriteSentences(string fNameParam)
         {
             string nextLine;
-            string myFile = "sentences.txt";
-
-            // Version 1 - write relative to folder the binary is in
-            // StreamWriter fileStr = File.CreateText(myFile);
+            string myFile = fNameParam;
 
             // Version 2 - Path to My Documents folder
             string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            myFile = Path.Combine(docPath, myFile);
-            //StreamWriter fileStr = File.CreateText(myFile);
+            myFile = Path.Combine(docPath, fNameParam);
+            StreamWriter fileStr = File.CreateText(myFile);
 
             // Version 3 - Appending
-            StreamWriter fileStr = File.AppendText(myFile);
+            // StreamWriter fileStr = File.AppendText(myFile);
             
             do
             {
@@ -35,7 +32,7 @@ namespace FilesExamplesSDC
         static void Main()
         {
             Console.WriteLine("File manipulation");
-            WriteSentences();
+            WriteSentences("Sentences.txt);
         }
     }
 }
